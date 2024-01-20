@@ -62,3 +62,53 @@ The algorithm consists of two phases, both of which have linear time complexity.
 Space Complexity:
 
 The space complexity is O(1) as we use only a constant amount of extra space regardless of the size of the input array.
+
+=================================================================================================
+
+Yes, another approach to find duplicates in O(n) time and O(1) extra space is to use the array itself to mark visited elements.
+Since the array elements are in the range of 0 to n-1,
+you can use the sign of the elements to mark their presence. Here's a JavaScript program implementing this approach:
+
+https://www.youtube.com/watch?v=ElkrgmAXDRo
+
+function findDuplicates(arr) {
+    const n = arr.length;
+    const result = [];
+
+    for (let i = 0; i < n; i++) {
+        const index = Math.abs(arr[i]) % n;
+
+        // If the element at index is already negative, it means it's a duplicate
+        if (arr[index] < 0) {
+            result.push(index);
+        } else {
+            // Mark the element as visited by making it negative
+            arr[index] = -arr[index];
+        }
+    }
+
+    // Convert the negative elements back to positive for the original array
+    for (let i = 0; i < n; i++) {
+        arr[i] = Math.abs(arr[i]);
+    }
+
+    return result;
+}
+
+// Sample Input
+const inputArray = [1, 2, 3, 6, 3, 6, 1];
+
+// Output
+console.log("Duplicate elements:", findDuplicates(inputArray));
+
+Duplicate elements: [1, 3, 6]
+
+// Time Complexity:
+
+// The time complexity of this solution is O(n), where n is the size of the input array. We iterate through the array once.
+// Space Complexity:
+
+// The space complexity is O(1) as we use only a constant amount of extra space regardless of the size of the input array.
+
+
+
