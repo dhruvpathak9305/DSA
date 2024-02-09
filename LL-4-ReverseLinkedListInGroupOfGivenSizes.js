@@ -1,7 +1,8 @@
-To reverse a linked list in groups of a given size in JavaScript, you can iterate through the list
-and reverse each group of nodes. The time complexity is O(n), where n is the number of nodes in 
-the linked list, as you need to visit each node once. The space complexity is O(1) since the reversal 
-is done in-place without using additional data structures.
+Reversing a linked list in groups of a given size using recursion involves breaking the problem into smaller subproblems.
+The time complexity is still O(n), but recursion introduces an additional space complexity of O(k),
+where k is the size of the group, due to the recursive call stack.
+
+Here's an example implementation:
 
 class Node {
     constructor(data) {
@@ -28,45 +29,45 @@ class LinkedList {
         }
     }
 
-    reverseInGroups(k) {
-        if (k <= 1 || !this.head) {
-            return;
-        }
-
-        let current = this.head;
+    reverseInGroupsRecursive(head, k) {
+        let current = head;
+        let next = null;
         let prev = null;
+        let count = 0;
 
-        // Get the size of the linked list
-        let size = 0;
-        let temp = this.head;
-        while (temp) {
-            size++;
+        // Count the number of nodes in the current group
+        let temp = head;
+        while (temp && count < k) {
             temp = temp.next;
+            count++;
         }
 
-        while (size >= k) {
-            let first = current;
-            let prevGroupTail = prev;
-
-            for (let i = 0; i < k; i++) {
-                const next = current.next;
-                current.next = prev;
-                prev = current;
-                current = next;
-            }
-
-            if (prevGroupTail) {
-                prevGroupTail.next = prev;
-            } else {
-                this.head = prev;
-            }
-
-            first.next = current;
-
-            // Move to the next group
-            prev = first;
-            size -= k;
+        // If the group size is less than k, no reversal is needed
+        if (count < k) {
+            return head;
         }
+
+        // Reverse the current group recursively
+        count = 0;
+        while (current && count < k) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            count++;
+        }
+
+        // Recursively reverse the remaining groups and connect them
+        if (next) {
+            head.next = this.reverseInGroupsRecursive(next, k);
+        }
+
+        // 'prev' is the new head of the reversed group
+        return prev;
+    }
+
+    reverseInGroups(k) {
+        this.head = this.reverseInGroupsRecursive(this.head, k);
     }
 
     printList() {
@@ -94,5 +95,5 @@ linkedList.printList();
 
 linkedList.reverseInGroups(3);
 
-console.log("\nLinked list after reversing in groups of 3:");
+console.log("\nLinked list after reversing in groups of 3 (using recursion):");
 linkedList.printList();
