@@ -1,8 +1,8 @@
-Reversing a linked list in groups of a given size using recursion involves breaking the problem into smaller subproblems.
-The time complexity is still O(n), but recursion introduces an additional space complexity of O(k),
-where k is the size of the group, due to the recursive call stack.
+// Reversing a linked list in groups of a given size using recursion involves breaking the problem into smaller subproblems.
+// The time complexity is still O(n), but recursion introduces an additional space complexity of O(k),
+// where k is the size of the group, due to the recursive call stack.
 
-Here's an example implementation:
+// Here's an example implementation:
 
 class Node {
     constructor(data) {

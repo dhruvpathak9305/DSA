@@ -1,6 +1,6 @@
-To remove duplicate elements from a sorted linked list in JavaScript, you can iterate through the list and remove any duplicate nodes.
-The time complexity of this operation is O(n), where n is the number of nodes in the linked list, because you need to visit each node
-at least once. The space complexity is O(1) since no additional data structures are used.
+// To remove duplicate elements from a sorted linked list in JavaScript, you can iterate through the list and remove any duplicate nodes.
+// The time complexity of this operation is O(n), where n is the number of nodes in the linked list, because you need to visit each node
+// at least once. The space complexity is O(1) since no additional data structures are used.
 
 
 class Node {

@@ -1,9 +1,9 @@
-To detect a loop in a linked list in JavaScript, you can use the Floyd's Tortoise and Hare algorithm,
-also known as the slow and fast pointer approach. The time complexity of this algorithm is O(n), where
-n is the number of nodes in the linked list, as you might need to traverse the list once. The space
-complexity is O(1) because you only use two pointers.
+// To detect a loop in a linked list in JavaScript, you can use the Floyd's Tortoise and Hare algorithm,
+// also known as the slow and fast pointer approach. The time complexity of this algorithm is O(n), where
+// n is the number of nodes in the linked list, as you might need to traverse the list once. The space
+// complexity is O(1) because you only use two pointers.
 
-Here's an example implementation:
+// Here's an example implementation:
 
 class Node {
     constructor(data) {
