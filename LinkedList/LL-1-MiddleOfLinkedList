@@ -1,0 +1,52 @@
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    append(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+            this.head = newNode;
+            return;
+        }
+        let last = this.head;
+        while (last.next) {
+            last = last.next;
+        }
+        last.next = newNode;
+    }
+
+    printMiddle() {
+        if (!this.head) {
+            console.log("Empty linked list");
+            return;
+        }
+
+        let slowPtr = this.head;
+        let fastPtr = this.head;
+
+        while (fastPtr && fastPtr.next) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+
+        console.log("Middle element:", slowPtr.data);
+    }
+}
+
+// Example Usage:
+const linkedList = new LinkedList();
+linkedList.append(1);
+linkedList.append(2);
+linkedList.append(3);
+linkedList.append(4);
+linkedList.append(5);
+
+linkedList.printMiddle();
